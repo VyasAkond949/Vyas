@@ -37,7 +37,7 @@ $(document).ready(function(){
     var typed = new Typed(".typing", {
         strings: ["Software Engineer at Accenture"],
         typeSpeed: 100,
-        backSpeed: 60,
+        backSpeed: 100,
         loop: true
     });
 
