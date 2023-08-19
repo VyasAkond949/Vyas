@@ -5,9 +5,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-body {
-    overflow: hidden; /* Prevent scrolling when popup is active */
-}
+
 .blur {
     filter: blur(5px); /* Apply blur effect */
     pointer-events: none; /* Allow interaction with elements beneath the blur */
