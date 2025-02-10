@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
-    <!-- Lottie Web Player Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
     <style>
         /* Dark theme background */
         body {
@@ -54,36 +52,15 @@
             transform: scale(1.1);
             box-shadow: 0px 5px 25px rgba(255, 77, 77, 0.8);
         }
-
-        /* Animation container */
-        .animation-container {
-            width: 300px;
-            height: 300px;
-            margin-bottom: 20px;
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Lottie Animation Container -->
-        <div class="animation-container" id="lottie-animation"></div>
-
         <h1>404</h1>
         <p>Oops! Looks like you're lost in cyberspace.</p>
         <a href="/" class="home-button">Go Home</a>
     </div>
-
-    <script>
-        // Load Lottie animation
-        lottie.loadAnimation({
-            container: document.getElementById('lottie-animation'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://assets10.lottiefiles.com/packages/lf20_6z5nlhuj.json'  // Animation JSON URL
-        });
-    </script>
 
 </body>
 </html>
