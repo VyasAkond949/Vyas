@@ -3,64 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>404 Not Found</title>
     <style>
-        /* Dark theme background */
-        body {
-            background: radial-gradient(circle, #1a1a2e, #16213e);
-            color: white;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
+        body, html {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
-
-        h1 {
-            font-size: 5rem;
-            color: #ff4d4d;
-            text-shadow: 2px 2px 10px #ff4d4d;
+        .parallax {
+            background-image: url('https://img.freepik.com/free-vector/organic-farming-flat-design-night-background_52683-77146.jpg?t=st=1739208954~exp=1739212554~hmac=9c886e79cecca63a21f22a88cb3e8564b12a005fb49ff0bebe84329a8ee24fbc&w=1060'); /* Parallax background */
+            height: 100%;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-
-        p {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Button styles */
-        .home-button {
-            text-decoration: none;
-            padding: 12px 30px;
-            font-size: 1.2rem;
-            background: linear-gradient(45deg, #ff4d4d, #ff7300);
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
             color: white;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0px 5px 15px rgba(255, 77, 77, 0.5);
+            z-index: 2; /* Above the background */
         }
-
-        .home-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 5px 25px rgba(255, 77, 77, 0.8);
+        h1 {
+            font-size: 5em;
+            margin: 0;
+        }
+        p {
+            font-size: 1.5em;
+        }
+        a {
+            text-decoration: none;
+            color: #ffcc00;
+            font-weight: bold;
+            border: 2px solid #ffcc00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+        a:hover {
+            background: #ffcc00;
+            color: black;
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>404</h1>
-        <p>Oops! Looks like you're lost in cyberspace.</p>
-        <a href="/" class="home-button">Go Home</a>
+    <div class="parallax">
+        <div class="background"></div> <!-- Static background -->
+        <div class="content">
+            <h1>404</h1>
+            <p>Oops! Page not found.</p>
+            <a href="#" id="homeLink">Go to Homepage</a>
+        </div>
     </div>
-
+    <script>
+        // Smooth scroll function
+        document.getElementById('homeLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Smooth scroll
+            });
+            // Optionally, redirect to the homepage after the scroll
+            setTimeout(function() {
+                window.location.href = '/'; // Change this to your homepage URL
+            }, 600); // Adjust the timeout to match the scroll duration
+        });
+    </script>
 </body>
 </html>
