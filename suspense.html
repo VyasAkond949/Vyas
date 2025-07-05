@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right top, #6EE7B7, #34D399, #34D399);
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem; /* Add some padding for smaller screens */
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Stronger shadow */
+            padding: 2.5rem;
+            max-width: 70%; /* Max width for better responsiveness */
+            width: 100%;
+            transition: all 0.5s ease-in-out; /* Smooth transitions */
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB; /* Light gray border */
+            border-radius: 0.75rem; /* Rounded input fields */
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .input-field:focus {
+            border-color: #10B981; /* Green border on focus */
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); /* Light green shadow on focus */
+        }
+        .submit-button {
+            background-color: #10B981; /* Green background */
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            border: none; /* Remove default button border */
+        }
+        .submit-button:hover {
+            background-color: #059669; /* Darker green on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+        .submit-button:active {
+            transform: translateY(0); /* Press down effect */
+        }
+        .welcome-message {
+            display: none; /* Hidden by default */
+            color: #10B981;
+            font-size: 2.25rem; /* Larger font size */
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .header-message {
+            color: white;
+            font-size: 2.25rem; /* Larger font size */
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .welcome-sub-message {
+            color: #4B5563; /* Darker gray for sub-message */
+            font-size: 1.25rem;
+            margin-top: 1rem;
+        }
+        .back-button {
+            background-color: #6B7280; /* Gray background for back button */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            border: none;
+            margin-top: 2rem; /* Space above the button */
+        }
+        .back-button:hover {
+            background-color: #4B5563; /* Darker gray on hover */
+            transform: translateY(-2px);
+        }
+        .back-button:active {
+            transform: translateY(0);
+        }
+        .error-message {
+            color: #EF4444; /* Red color for error */
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none; /* Hidden by default */
+        }
+        .main-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-top: 1%;
+        }
+        body.love-background {
+            background: linear-gradient(to right top, #FFC0CB, #FF69B4, #FF69B4); /* Pink/Red gradient */
+        }
+        .footer {
+            background-color: #6B7280; /* Gray background for back button */
+            color: white;
+            margin-top: 100%;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="heart-overlay"></div>
+    <div class="main-header" id="main-header">
+        <h1 class="header-message items-center">Suspense</h1>
+    </div>
+    <div class="container" id="main-container">
+        <div id="form-section" class="flex flex-col items-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Enter Your Name</h2>
+            <form id="name-form" class="space-y-4 w-full">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Here" class="input-field" required>
+                    <p id="error-message" class="error-message text-center">Wrong name... think it again</p>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+
+        <div id="welcome-section" class="welcome-message flex flex-col items-center">
+            <p>Welcome to the OUR SPACE</p>
+            <p class="welcome-sub-message">Let's meet soon</p>
+            <p class="welcome-sub-message">Tumko mera pucchi ❤️💗</p>
+            <button id="back-button" class="back-button">Back</button>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Made with Love</p>
+        <p>Vyas Akondi</p>
+    </footer>
+
+    <script>
+        // Get references to the form, input, and message sections
+        const nameForm = document.getElementById('name-form');
+        const nameInput = document.getElementById('name');
+        const formSection = document.getElementById('form-section');
+        const welcomeSection = document.getElementById('welcome-section');
+        const mainContainer = document.getElementById('main-container'); // Reference to the main container
+        const backButton = document.getElementById('back-button'); // Reference to the new back button
+        const errorMessage = document.getElementById('error-message'); // Reference to the error message
+        const mainHeader = document.getElementById('main-header');
+
+        // Function to show the error message
+        function showErrorMessage() {
+            errorMessage.style.display = 'block';
+        }
+
+        // Function to hide the error message
+        function hideErrorMessage() {
+            errorMessage.style.display = 'none';
+        }
+
+        // Add an event listener for the form submission
+        nameForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Hide any existing error messages
+            hideErrorMessage();
+
+            // Get the value from the name input field and trim whitespace
+            const enteredName = nameInput.value.trim();
+
+            // Check if the entered name matches "Jhon doe" (case-insensitive)
+            if (enteredName.toLowerCase() === 'jaanu') {
+                // If it matches, hide the form section
+                formSection.style.display = 'none';
+                mainHeader.style.display = 'none';
+
+                // Display the welcome message section
+                welcomeSection.style.display = 'block';
+
+                // Adjust container padding and center content for the message
+                mainContainer.style.padding = '4rem 2.5rem';
+                document.body.classList.add('love-background');
+                heartOverlay.style.opacity = '0.1'; // Show heart overlay
+            } else {
+                // If the name does not match, display the error message
+                showErrorMessage();
+            }
+        });
+
+        // Add event listener for the back button
+        backButton.addEventListener('click', function() {
+            // Hide the welcome message section
+            welcomeSection.style.display = 'none';
+            mainHeader.style.display = 'flex';
+
+            // Show the form section
+            formSection.style.display = 'block'; // Use flex to re-show with centering
+
+            // Reset the input field
+            nameInput.value = '';
+
+            // Hide any error messages when returning to the form
+            hideErrorMessage();
+
+            // Revert container padding and alignment
+            mainContainer.style.padding = '2.5rem';
+            document.body.classList.remove('love-background');
+            heartOverlay.style.opacity = '0'; // Hide heart overlay
+        });
+
+        // Add an event listener to the input field to hide the error message when typing
+        nameInput.addEventListener('input', function() {
+            hideErrorMessage();
+        });
+    </script>
+</body>
+</html>
