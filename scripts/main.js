@@ -1,94 +1,101 @@
-(function() {
-  "use strict";
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile Menu Toggle
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links li a');
 
-  window.addEventListener('load', () => {
-    on_page_load()
-  });
-
-  /**
-   * Function gets called when page is loaded.
-   */
-  function on_page_load() {
-    // Initialize On-scroll Animations
-    AOS.init({
-      anchorPlacement: 'top-left',
-      duration: 600,
-      easing: "ease-in-out",
-      once: true,
-      mirror: false,
-      disable: 'mobile'
-    });
-  }
-
-  /**
-   * Navbar effects and scrolltop buttons upon scrolling
-   */
-  const navbar = document.getElementById('header-nav')
-  var body = document.getElementsByTagName("body")[0]
-  const scrollTop = document.getElementById('scrolltop')
-  window.onscroll = () => {
-    if (window.scrollY > 0) {
-      navbar.classList.add('fixed-top', 'shadow-sm')
-      body.style.paddingTop = navbar.offsetHeight + "px"
-      scrollTop.style.visibility = "visible";
-      scrollTop.style.opacity = 1;
-    } else {
-      navbar.classList.remove('fixed-top', 'shadow-sm')
-      body.style.paddingTop = "0px"
-      scrollTop.style.visibility = "hidden";
-      scrollTop.style.opacity = 0;
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
     }
-  };
 
-  /**
-   * Masonry Grid
-   */
-  var elem = document.querySelector('.grid');
-  if(elem) {
-    imagesLoaded(elem, function() {
-      new Masonry(elem, {
-        itemSelector: '.grid-item',
-        percentPosition: true,
-        horizontalOrder: true
-      });
-    })
-  }
+    // Close mobile menu on click
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                const icon = mobileBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    });
 
-  /**
-   * Big Picture Popup for images and videos
-   */
-   document.querySelectorAll("[data-bigpicture]").forEach((function(e) {
-     e.addEventListener("click", (function(t){
-       t.preventDefault();
-       const data =JSON.parse(e.dataset.bigpicture)
-       BigPicture({
-        el: t.target,
-        ...data
-      })
-     })
-    )
-  }))
+    // Sticky Header
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 
-  /**
-   * Big Picture Popup for Photo Gallary
-   */
-   document.querySelectorAll(".bp-gallery a").forEach((function(e) {
-    var caption = e.querySelector('figcaption')
-    var img = e.querySelector('img')
-    // set the link present on the item to the caption in full view
-    img.dataset.caption = '<a class="link-light" target="_blank" href="' + e.href + '">' + caption.innerHTML + '</a>';
-    window.console.log(caption, img)
-     e.addEventListener("click", (function(t){
-       t.preventDefault();
-       BigPicture({
-        el: t.target,
-        gallery: '.bp-gallery',
-      })
-     })
-    )
-  }))
+    // Intersection Observer for animations
+    const fadeUpElements = document.querySelectorAll('.fade-up');
+    const skillBars = document.querySelectorAll('.skill-progress');
 
-  // Add your javascript here
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
 
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add visible class for general fade ups
+                if (entry.target.classList.contains('fade-up')) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            }
+        });
+    }, observerOptions);
 
-})();
+    fadeUpElements.forEach(el => observer.observe(el));
+
+    // Specific observer for skill bars to trigger animation
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const percent = entry.target.getAttribute('data-percent');
+                entry.target.style.width = percent + '%';
+                skillObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    skillBars.forEach(bar => skillObserver.observe(bar));
+
+    // Active Navigation Highlighting on Scroll
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(li => {
+            li.classList.remove('active');
+            if (li.getAttribute('href').substring(1) === current) {
+                li.classList.add('active');
+            }
+        });
+    });
+});
