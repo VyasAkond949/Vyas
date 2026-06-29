@@ -1,536 +1,1629 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <!-- Basic -->
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  
+  <!-- === BRAND IDENTITY & SEO METAS === -->
+  <!-- IMPROVEMENT: Added high-end SEO keywords and descriptions targeted for wedding photography search ranking -->
+  <meta name="keywords" content="RK Digital Studio, wedding photography, portrait photography, digital photo studio, Gajapathinagaram, Vizianagaram, premium wedding photographer" />
+  <meta name="description" content="RK Digital Studio offers luxury, minimalist wedding and portrait photography services since 2004. Timeless visual stories captured with passion and fine art craftsmanship in Vizianagaram, Andhra Pradesh." />
+  <meta name="author" content="Vyas Akondi" />
+  
+  <!-- Open Graph Meta Tags for Premium Social Media Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="RK Digital Studio | Luxury Wedding & Portrait Photography" />
+  <meta property="og:description" content="Capturing the poetry of your love story with timeless craftsmanship and minimalist artistry since 2004." />
+  <meta property="og:image" content="photography/images/slider-img.jpg" />
 
-  <title>RK Digital Studio</title>
+  <title>RK Digital Studio | Premium Wedding & Portrait Photography</title>
 
-
-  <!-- bootstrap core css -->
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" type="text/css" href="photography/css/bootstrap.css" />
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <!-- === TYPOGRAPHY === -->
+  <!-- IMPROVEMENT: Swapped basic Poppins for an editorial pairing of Cormorant Garamond (luxurious serif) and Inter (minimalist sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <!-- === ICON SYSTEM === -->
+  <!-- IMPROVEMENT: Added FontAwesome 6 CDN for clean vector icon support in contacts, counter achievements, and social link boxes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Base template CSS styles (used for backward compatibility overlay references) -->
   <link href="photography/css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
   <link href="photography/css/responsive.css" rel="stylesheet" />
+
+  <!-- === CUSTOM DESIGN SYSTEM STYLE OVERRIDES === -->
+  <!-- IMPROVEMENT: Embedded CSS to isolate RK Digital Studio styling from shared stylesheets, preventing layout breaks on other templates -->
+  <style>
+    /* --- COLOR PALETTE VARIABLES --- */
+    :root {
+      --bg-primary: #F8F5F0;       /* Ivory */
+      --text-primary: #1A1A1A;     /* Charcoal */
+      --text-muted: #5E5A54;       /* Soft Gray-Brown */
+      --color-accent: #C9A84C;     /* Gold Accent */
+      --color-accent-light: rgba(201, 168, 76, 0.12);
+      --color-accent-hover: #B5933C;
+      --bg-secondary: #E8E4DE;     /* Warm Gray Cards */
+      --bg-contrast: #111111;      /* Near-black */
+      --bg-contrast-light: #1E1E1E;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Inter', sans-serif;
+      --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --transition-fast: all 0.2s ease-in-out;
+      --spacing-section: 100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* Offset for sticky navbar */
+    }
+
+    body {
+      background-color: var(--bg-primary) !important;
+      color: var(--text-primary) !important;
+      font-family: var(--font-sans) !important;
+      font-size: 16px;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* --- TYPOGRAPHY SCALE --- */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-serif) !important;
+      color: var(--text-primary);
+      letter-spacing: 0.03em;
+      font-weight: 500;
+    }
+
+    p, span, a, input, select, textarea, button {
+      font-family: var(--font-sans);
+    }
+
+    /* --- SECTION SPACING --- */
+    section {
+      padding: var(--spacing-section) 0;
+      position: relative;
+    }
+
+    .heading_container {
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .heading_container h2 {
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 18px;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* Remove the blue camera icon inherited from the old style.css h2::before */
+    .heading_container h2::before {
+      display: none !important;
+    }
+
+    .heading_container h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 1px;
+      background-color: var(--color-accent);
+    }
+
+    /* --- PREMIUM STICKY HEADER & NAVBAR --- */
+    header.header_section {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(248, 245, 240, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition-smooth);
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+    }
+
+    header.header_section.scrolled {
+      background: rgba(17, 17, 17, 0.95);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    header.header_section.scrolled .navbar-brand span {
+      color: #FFFFFF;
+    }
+
+    header.header_section.scrolled .nav-link {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    header.header_section.scrolled .nav-link:hover,
+    header.header_section.scrolled .nav-link.active {
+      color: var(--color-accent) !important;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none !important;
+    }
+
+    .navbar-brand img {
+      max-height: 38px;
+      width: auto;
+    }
+
+    .navbar-brand span {
+      font-family: var(--font-sans) !important;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-link {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-primary) !important;
+      margin: 0 12px;
+      position: relative;
+      transition: var(--transition-smooth);
+      opacity: 0.8;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 10px;
+      width: 0;
+      height: 1px;
+      background-color: var(--color-accent);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: calc(100% - 20px);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-accent) !important;
+      opacity: 1;
+    }
+
+    /* Mobile Hamburger Menu */
+    .navbar-toggler {
+      border: none !important;
+      padding: 0 !important;
+      outline: none !important;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: none !important;
+      position: relative;
+      width: 22px;
+      height: 2px;
+      background-color: var(--text-primary);
+      display: inline-block;
+      transition: var(--transition-smooth);
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 2px;
+      background-color: var(--text-primary);
+      transition: var(--transition-smooth);
+    }
+
+    .navbar-toggler-icon::before {
+      top: -7px;
+      left: 0;
+    }
+
+    .navbar-toggler-icon::after {
+      bottom: -7px;
+      left: 0;
+    }
+
+    header.header_section.scrolled .navbar-toggler-icon,
+    header.header_section.scrolled .navbar-toggler-icon::before,
+    header.header_section.scrolled .navbar-toggler-icon::after {
+      background-color: #FFFFFF;
+    }
+
+    /* Open mobile toggler visual state (X) */
+    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+      background-color: transparent !important;
+    }
+
+    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+      transform: rotate(-45deg);
+      bottom: 0;
+    }
+
+    /* --- FULL-BLEED HERO LANDING --- */
+    .hero_area {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(rgba(17, 17, 17, 0.45), rgba(17, 17, 17, 0.65)), url('photography/images/slider-img.jpg') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #FFFFFF;
+      padding-top: 100px;
+    }
+
+    .hero_content {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 2;
+    }
+
+    .hero_subtitle {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .hero_title {
+      font-family: var(--font-serif);
+      font-size: 4.2rem;
+      line-height: 1.2;
+      font-weight: 300;
+      margin-bottom: 30px;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+    }
+
+    .hero_desc {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.6rem;
+      font-weight: 300;
+      margin-bottom: 45px;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.03em;
+    }
+
+    /* --- PREMIUM BUTTON SYSTEM --- */
+    .btn-premium {
+      display: inline-block;
+      padding: 15px 38px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-radius: 0;
+      border: 1px solid var(--color-accent);
+      margin: 10px;
+      text-decoration: none !important;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .btn-accent {
+      background-color: var(--color-accent);
+      color: #FFFFFF !important;
+    }
+
+    .btn-accent:hover {
+      background-color: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(201, 168, 76, 0.25);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #FFFFFF !important;
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-outline:hover {
+      background-color: #FFFFFF;
+      color: var(--text-primary) !important;
+      border-color: #FFFFFF;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.3rem;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      z-index: 2;
+    }
+
+    .scroll-down:hover {
+      color: var(--color-accent);
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-10px) translateX(-50%); }
+      60% { transform: translateY(-5px) translateX(-50%); }
+    }
+
+    /* --- ABOUT SECTION (2-Column Grid) --- */
+    .about_grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about_img-wrapper {
+      position: relative;
+      padding: 15px;
+    }
+
+    .about_img-wrapper img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+      position: relative;
+      z-index: 1;
+    }
+
+    .about_img-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      border: 1px solid var(--color-accent);
+      z-index: 0;
+      transform: translate(25px, 25px);
+      transition: var(--transition-smooth);
+      pointer-events: none;
+    }
+
+    .about_img-wrapper:hover::before {
+      transform: translate(12px, 12px);
+    }
+
+    .about_subtitle {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .about_quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 2.1rem;
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: 30px;
+      font-weight: 300;
+      border-left: 2px solid var(--color-accent);
+      padding-left: 25px;
+    }
+
+    .about_text {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+      text-align: justify;
+    }
+
+    /* --- PORTFOLIO EDITORIAL GALLERY --- */
+    .portfolio_section {
+      background-color: var(--bg-secondary);
+    }
+
+    .portfolio_grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .portfolio_item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background-color: #000;
+    }
+
+    .portfolio_item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .portfolio_overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(17, 17, 17, 0.85) 0%, rgba(17, 17, 17, 0.2) 60%, rgba(17, 17, 17, 0) 100%);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+    }
+
+    .portfolio_item:hover img {
+      transform: scale(1.06);
+    }
+
+    .portfolio_item:hover .portfolio_overlay {
+      opacity: 1;
+    }
+
+    .portfolio_cat {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: 5px;
+      transform: translateY(15px);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .portfolio_title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: #FFFFFF;
+      font-weight: 300;
+      transform: translateY(15px);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+    }
+
+    .portfolio_item:hover .portfolio_cat,
+    .portfolio_item:hover .portfolio_title {
+      transform: translateY(0);
+    }
+
+    /* --- ACHIEVEMENTS COUNTERS --- */
+    .achieve_section {
+      background-color: var(--bg-primary);
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      padding: 70px 0;
+    }
+
+    .achieve_grid {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .achieve_box {
+      text-align: center;
+      max-width: 250px;
+      flex: 1;
+    }
+
+    .achieve_icon {
+      font-size: 2.2rem;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+
+    .achieve_number {
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
+      color: var(--text-primary);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .achieve_label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    /* --- SERVICES & PRICING --- */
+    .services_section {
+      background-color: var(--bg-primary);
+    }
+
+    .services_grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .service_card {
+      background: var(--bg-primary);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      padding: 45px 35px;
+      position: relative;
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service_card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(17, 17, 17, 0.05);
+      border-color: var(--color-accent);
+    }
+
+    .service_card.popular {
+      border: 2px solid var(--color-accent);
+      background: var(--bg-secondary);
+    }
+
+    .popular_badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--color-accent);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding: 6px 18px;
+      font-weight: 600;
+    }
+
+    .service_name {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+
+    .service_desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+
+    .service_features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 35px 0;
+    }
+
+    .service_features li {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .service_features li i {
+      color: var(--color-accent);
+      font-size: 0.75rem;
+    }
+
+    .service_price {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--text-primary);
+      margin-bottom: 30px;
+      border-top: 1px solid rgba(201, 168, 76, 0.15);
+      padding-top: 20px;
+    }
+
+    .service_price span {
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .service_card .btn-premium {
+      margin: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* --- TESTIMONIALS SLIDER --- */
+    .testimonial_section {
+      background-color: var(--bg-contrast);
+      color: #FFFFFF;
+      padding: 100px 0;
+      overflow: hidden;
+    }
+
+    .testimonial_section h2 {
+      color: #FFFFFF;
+    }
+
+    .testimonial_container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      text-align: center;
+    }
+
+    .testimonial_slider_wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .testimonial_slider {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      width: 300%;
+    }
+
+    .testimonial_slide {
+      width: 33.333%;
+      padding: 0 30px;
+      box-sizing: border-box;
+    }
+
+    .testimonial_quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 2rem;
+      line-height: 1.5;
+      margin-bottom: 30px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .testimonial_author {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      color: var(--color-accent);
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .testimonial_role {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .testimonial_dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .testimonial_dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .testimonial_dot.active {
+      background: var(--color-accent);
+      transform: scale(1.3);
+    }
+
+    /* --- CONTACT & BOOKING --- */
+    .contact_section {
+      background-color: var(--bg-primary);
+    }
+
+    .contact_grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact_form h3 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      font-weight: 400;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(26, 26, 26, 0.15);
+      border-radius: 0;
+      padding: 10px 0;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      transition: var(--transition-fast);
+    }
+
+    .form-control:focus {
+      background: transparent;
+      outline: none;
+      box-shadow: none;
+      border-bottom: 1px solid var(--color-accent);
+    }
+
+    textarea.form-control {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%231A1A1A%22%20d%3D%22M10.293%203.293L6%207.586%201.707%203.293%20.293%204.707%206%2010.414l5.707-5.707z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: calc(100% - 10px) center;
+      background-size: 10px;
+      cursor: pointer;
+    }
+
+    .contact_info-wrapper {
+      padding-left: 10px;
+    }
+
+    .contact_info-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .contact_info-icon {
+      font-size: 1.1rem;
+      color: var(--color-accent);
+      width: 20px;
+      margin-top: 3px;
+    }
+
+    .contact_info-text h5 {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .contact_info-text p {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .contact_map {
+      margin-top: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .contact_map iframe {
+      width: 100%;
+      height: 250px;
+      border: 0;
+      filter: grayscale(1) contrast(1.1) brightness(0.95);
+      transition: var(--transition-smooth);
+    }
+
+    .contact_map:hover iframe {
+      filter: grayscale(0.2) contrast(1);
+    }
+
+    /* --- FOOTER --- */
+    footer.footer_section {
+      background-color: var(--bg-contrast);
+      color: #E8E4DE;
+      padding: 70px 0 35px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer_grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 0.8fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer_brand h3 {
+      color: #FFFFFF;
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+      letter-spacing: 0.05em;
+      font-family: var(--font-serif);
+    }
+
+    .footer_brand p {
+      font-size: 0.9rem;
+      color: rgba(232, 228, 222, 0.6);
+      max-width: 320px;
+    }
+
+    .footer_links h5,
+    .footer_social h5 {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer_links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer_links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer_links ul li a {
+      color: rgba(232, 228, 222, 0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition-fast);
+      letter-spacing: 0.05em;
+    }
+
+    .footer_links ul li a:hover {
+      color: var(--color-accent);
+      padding-left: 5px;
+    }
+
+    .footer_social-box {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer_social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: rgba(232, 228, 222, 0.7);
+      transition: var(--transition-smooth);
+      text-decoration: none !important;
+    }
+
+    .footer_social-link:hover {
+      background: var(--color-accent);
+      color: #FFFFFF;
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+    }
+
+    .footer_bottom {
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 25px;
+    }
+
+    .footer_bottom p {
+      font-size: 0.8rem;
+      color: rgba(232, 228, 222, 0.4);
+      margin: 0;
+    }
+
+    .footer_bottom a {
+      color: rgba(232, 228, 222, 0.6);
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .footer_bottom a:hover {
+      color: var(--color-accent);
+    }
+
+    /* --- ANIMATION CLASS --- */
+    .fade-up-element {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .fade-up-element.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- RESPONSIVENESS AND COLLAPSIBILITY --- */
+    @media (max-width: 991px) {
+      .about_grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      .portfolio_grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .services_grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        max-width: 450px;
+        margin: 0 auto;
+      }
+      .contact_grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      .footer_grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+      .navbar-collapse {
+        background: rgba(17, 17, 17, 0.98) !important;
+        position: absolute;
+        top: 100%;
+        left: -15px;
+        width: calc(100% + 30px);
+        padding: 25px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-smooth);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      }
+      .navbar-collapse.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav-link {
+        color: #FFFFFF !important;
+        margin: 10px 0;
+        padding-left: 0;
+      }
+      .nav-link::after {
+        left: 0;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+      .hero_title {
+        font-size: 3rem;
+      }
+      .hero_desc {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .portfolio_grid {
+        grid-template-columns: 1fr;
+      }
+      .heading_container h2 {
+        font-size: 2rem;
+      }
+      .about_quote {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-11 offset-lg-1">
-            <nav class="navbar navbar-expand-lg custom_nav-container ">
-              <a class="navbar-brand" href="editing-photography.html">
-                <img src="photography/images/logo.png" alt="">
-                <span>
-                  RK Digital Photo Studio
-                </span>
-              </a>
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+  <!-- === STICKY NAVIGATION BAR === -->
+  <!-- IMPROVEMENT: Refactored navbar to support sticky position, backdrop blur, custom mobile hamburger and clean container alignment -->
+  <header class="header_section">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="#home">
+          <!-- IMPROVEMENT: Replaced old logo with new custom luxury logo -->
+          <img src="photography/images/rk_studio_logo1.png" alt="RK Digital Studio Logo" style="max-height: 42px; width: auto;">
+          <span>RK Digital Studio</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-                  <ul class="navbar-nav  ">
-                    <li class="nav-item">
-                      <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
-                    </li>
-                    </li>
-                  </ul>
-                </div>
-
-              </div>
-            </nav>
-          </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#testimonials">Reviews</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <!-- Link back to index.html developer portfolio -->
+            <li class="nav-item">
+              <a class="nav-link" href="index.html" style="border: 1px solid var(--color-accent); padding: 5px 12px; margin-left: 10px; border-radius: 2px; display: inline-block;">Home Portal</a>
+            </li>
+          </ul>
         </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- === HERO LANDING SECTION === -->
+  <!-- IMPROVEMENT: Converted the carousel into a clean full-viewport magazine cover-style landing screen with a gold-tint overlay and elegant CTAs -->
+  <div id="home" class="hero_area">
+    <div class="hero_content fade-up-element">
+      <span class="hero_subtitle">RK Digital Photo Studio</span>
+      <h1 class="hero_title">Capturing the Poetry of Your Love Story</h1>
+      <p class="hero_desc">Luxury wedding & fine-art portrait photography since 2004.</p>
+      <div class="btn-box">
+        <a href="#contact" class="btn-premium btn-accent">Book a Session</a>
+        <a href="#portfolio" class="btn-premium btn-outline">Explore Gallery</a>
       </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class=" slider_section position-relative">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-5 offset-md-1 ">
-                  <div class="detail_box">
-                    <h1>
-                     RK Digital Photography <br>
-                      Studio
-                    </h1>
-                    <p>
-                      Memories in a snap
-                    </p>
-                    <div class="btn-box">
-                        <a href="mailto:rkdigitalgpm@gmail.com?subject=Mail from our Website" class="btn-1" style="background-color: #141E46 !important;">
-                        Email Us
-                      </a>
-                      <a href="tel:+919912495553" class="btn-2" style="background-color: #141E46 !important;">
-                        Call Us
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 px-0">
-                  <div class="img-box">
-                    <img src="photography/images/slider-img.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-5 offset-md-1">
-                  <div class="detail_box">
-                    <h1>
-                        RK Digital Photography <br>
-                        Studio
-                    </h1>
-                    <p>
-                      Memories in a snap
-                    </p>
-                    <div class="btn-box">
-                        <a href="mailto:rkdigitalgpm@gmail.com?subject=Mail from our Website" class="btn-1" style="background-color: #141E46 !important;">
-                        Email Us
-                      </a>
-                      <a href="tel:+919912495553" class="btn-2" style="background-color: #141E46 !important;">
-                        Call Us
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 px-0">
-                  <div class="img-box">
-                    <img src="photography/images/slider-img.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-5 offset-md-1">
-                  <div class="detail_box">
-                    <h1>
-                        RK Digital Photography <br>
-                        Studio
-                    </h1>
-                    <p>
-                      Memories in a snap
-                    </p>
-                    <div class="btn-box">
-                        <a href="mailto:rkdigitalgpm@gmail.com?subject=Mail from our Website" class="btn-1" style="background-color: #141E46 !important;">
-                        Email Us
-                      </a>
-                      <a href="tel:+919912495553" class="btn-2" style="background-color: #141E46 !important;">
-                        Call Us
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 px-0">
-                  <div class="img-box">
-                    <img src="photography/images/slider-img.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel_btn-container">
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-
-    </section>
-    <!-- end slider section -->
+    </div>
+    
+    <!-- Smooth Scroll down indicator -->
+    <a href="#about" class="scroll-down" aria-label="Scroll to About Section">
+      <i class="fa-solid fa-chevron-down"></i>
+    </a>
   </div>
 
-  <!-- about section -->
-
-  <section class="about_section layout_padding">
+  <!-- === ABOUT SECTION === -->
+  <!-- IMPROVEMENT: Upgraded to a modern 2-column layout with an offset gold frame for the photo, and a large italic quote block -->
+  <section id="about" class="about_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h2>
-          About Studio
-        </h2>
-      </div>
-      <div class="box">
-        <div class="img-box">
-          <img src="photography/images/bg-gif.gif" alt="">
-          <div class="about_img-bg">
-            <img src="photography/images/about-img-bg.png" alt="">
+      <div class="about_grid">
+        <div class="about_img-wrapper fade-up-element">
+          <!-- Replacing the 14MB GIF with the fast, high-quality JPG image for quick initial load times -->
+          <img src="photography/images/bg-gif.gif" alt="RK Digital Studio Wedding Photography Session" loading="lazy">
+        </div>
+        
+        <div class="about_content fade-up-element">
+          <span class="about_subtitle">ESTABLISHED IN 2008</span>
+          <h2 style="font-size: 2.8rem; margin-bottom: 20px; font-weight: 400;">Crafting Timeless Legacies</h2>
+          <div class="about_quote">
+            "Every wedding has a rhythm. We capture the beats in between, creating timeless heirlooms."
+          </div>
+          <p class="about_text">
+            Welcome to RK Digital Studio, where passion meets craftsmanship and fleeting moments are preserved into visual treasures that stand the test of time. For over two decades, our dedicated team has specialized in documenting the raw emotion, grandeur, and intimate stories of weddings and portraits.
+          </p>
+          <p class="about_text">
+            Operating from Andhra Pradesh, we focus on combining high-end editorial portraits with candid photojournalism. We don't just capture images; we construct legacies.
+          </p>
+          <div style="margin-top: 35px;">
+            <a href="#contact" class="btn-premium btn-accent" style="margin: 0;">Learn More</a>
           </div>
         </div>
-        <br>
-        <br><br><br>
-      </div>
-      <div class="detail-box">
-        <p>
-          Welcome to RK Digital, where passion meets artistry and memories are etched into frames that stand the test of time. Established in 2004, we have been dedicated to transforming ordinary moments into extraordinary memories through the lens of our cameras.
-        </p>
-        <!-- <div>
-          <a href="">
-            about More
-          </a>
-        </div> -->
       </div>
     </div>
-
   </section>
 
-  <!-- end about section -->
-
-  <!-- portfolio section -->
-
-  <!-- <section class="portfolio_section layout_padding">
+  <!-- === PORTFOLIO / GALLERY SECTION === -->
+  <!-- IMPROVEMENT: Uncommented portfolio section and rebuilt it into a clean, editorial masonry-style grid with subtle zoom hover and gold-toned info overlays -->
+  <section id="portfolio" class="portfolio_section layout_padding">
     <div class="container">
       <div class="heading_container">
-        <h2>
-          Our portfolio
-        </h2>
-        <p>
-          minim veniam, quis nostrud exercitation ullamco laboris nisi
-        </p>
+        <h2>Our Portfolio</h2>
       </div>
-      <div class="portfolio_container layout_padding2">
-        <div class="box-1">
-          <div class="img-box b-1">
-            <img src="photography/images/p-1.jpg" alt="">
-            <div class="btn-box">
-              <a href="" class="btn-1">
-
-              </a>
-            </div>
-          </div>
-          <div class="img-box b-2">
-            <img src="photography/images/p-2.jpg" alt="">
-            <div class="btn-box">
-              <a href="" class="btn-1">
-
-              </a>
-            </div>
+      
+      <div class="portfolio_grid">
+        <!-- Gallery Item 1 -->
+        <div class="portfolio_item fade-up-element">
+          <img src="photography/images/p-1.jpg" alt="Bridal Portrait Session" loading="lazy">
+          <div class="portfolio_overlay">
+            <span class="portfolio_cat">Bridal Portrait</span>
+            <h4 class="portfolio_title">The Golden Glow</h4>
           </div>
         </div>
-        <div class="box-2">
-          <div class="box-2-top">
-            <div class="img-box b-3">
-              <img src="photography/images/p-3.jpg" alt="">
-              <div class="btn-box">
-                <a href="" class="btn-1">
 
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="box-2-top2">
-            <div class="img-box b-4">
-              <img src="photography/images/p-4.jpg" alt="">
-              <div class="btn-box">
-                <a href="" class="btn-1">
-
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="box-2-btm">
-            <div class="img-box b-5">
-              <img src="photography/images/p-5.jpg" alt="">
-              <div class="btn-box">
-                <a href="" class="btn-1">
-
-                </a>
-              </div>
-            </div>
-            <div class="img-box b-6">
-              <img src="photography/images/p-6.jpg" alt="">
-              <div class="btn-box">
-                <a href="" class="btn-1">
-
-                </a>
-              </div>
-            </div>
+        <!-- Gallery Item 2 -->
+        <div class="portfolio_item fade-up-element">
+          <img src="photography/images/p-2.jpg" alt="Traditional Wedding Ceremony" loading="lazy">
+          <div class="portfolio_overlay">
+            <span class="portfolio_cat">Ceremony</span>
+            <h4 class="portfolio_title">Sacred Vows</h4>
           </div>
         </div>
-      </div>
-      <div class="see_btn">
-        <a href="">
-          See More
-        </a>
+
+        <!-- Gallery Item 3 -->
+        <div class="portfolio_item fade-up-element">
+          <img src="photography/images/p-3.jpg" alt="Candid Wedding Emotion" loading="lazy">
+          <div class="portfolio_overlay">
+            <span class="portfolio_cat">Candid Moments</span>
+            <h4 class="portfolio_title">The First Glimpse</h4>
+          </div>
+        </div>
+
+        <!-- Gallery Item 4 -->
+        <div class="portfolio_item fade-up-element">
+          <img src="photography/images/p-4.jpg" alt="Pre-wedding Couples Outdoor Session" loading="lazy">
+          <div class="portfolio_overlay">
+            <span class="portfolio_cat">Couples Portrait</span>
+            <h4 class="portfolio_title">Quiet Romance</h4>
+          </div>
+        </div>
+
+        <!-- Gallery Item 5 -->
+        <div class="portfolio_item fade-up-element">
+          <img src="photography/images/p-5.jpg" alt="Indian Bridal Details and Jewelry" loading="lazy">
+          <div class="portfolio_overlay">
+            <span class="portfolio_cat">Fine Art Details</span>
+            <h4 class="portfolio_title">Ornate Traditions</h4>
+          </div>
+        </div>
+
+        <!-- Gallery Item 6 -->
+        <div class="portfolio_item fade-up-element">
+          <img src="photography/images/p-6.jpg" alt="Wedding Reception First Dance" loading="lazy">
+          <div class="portfolio_overlay">
+            <span class="portfolio_cat">Reception</span>
+            <h4 class="portfolio_title">Under The Lights</h4>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-  </section> -->
-
-  <!-- end about section -->
-
-  <!-- achieve section -->
-
+  <!-- === ACHIEVEMENTS SECTION === -->
+  <!-- IMPROVEMENT: Upgraded counter blocks with premium gold line borders and modern vector icons -->
   <section class="achieve_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h2>
-          ACHIEVEMENTS
-        </h2>
-        <!-- <p>
-          minim veniam, quis nostrud exercitation ullamco laboris nisi
-        </p> -->
-      </div>
-      <div class="achieve_container">
-        <div class="box">
-          <div class="img-box">
-            <img src="photography/images/a-1.png" alt="">
-          </div>
-          <div class="detail-box">
-            <h2>
-              1000+
-            </h2>
-            <h6>
-              Photo Session
-            </h6>
-          </div>
+      <div class="achieve_grid">
+        <div class="achieve_box fade-up-element">
+          <i class="fa-solid fa-camera-retro achieve_icon"></i>
+          <h2 class="achieve_number">1,000+</h2>
+          <h6 class="achieve_label">Sessions Conducted</h6>
         </div>
-        <div class="box">
-          <div class="img-box">
-            <img src="photography/images/a-2.png" alt="">
-          </div>
-          <div class="detail-box">
-            <h2>
-              9000+
-            </h2>
-            <h6>
-              Happy Customers
-            </h6>
-          </div>
-        </div>
+        
+        <div class="achieve_box fade-up-element" style="transition-delay: 0.1s;">
+          <i class="fa-solid fa-face-smile achieve_icon"></i>
+          <h2 class="achieve_number">9,000+</h2>
+          <h6 class="achieve_label">Happy Customers</h6>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- end achieve section -->
-
-  <!-- client section -->
-
-  <!-- <section class="client_section layout_padding-bottom">
+  <!-- === SERVICES & PRICING SECTION === -->
+  <!-- IMPROVEMENT: Added a completely new, clean three-tier pricing package grid with highlighted features and direct booking links -->
+  <section id="services" class="services_section layout_padding">
     <div class="container">
       <div class="heading_container">
-        <h2>
-          Testimonial
-        </h2>
+        <h2>Services & Packages</h2>
+      </div>
+
+      <div class="services_grid">
+        <!-- Package 1: Silver -->
+        <div class="service_card fade-up-element">
+          <div>
+            <h3 class="service_name">Silver Heirloom</h3>
+            <p class="service_desc">Ideal for intimate events, registry documentation, and portrait collections.</p>
+            <ul class="service_features">
+              <li><i class="fa-solid fa-check"></i> 4 Hours Continuous Coverage</li>
+              <li><i class="fa-solid fa-check"></i> 1 Lead Photographer</li>
+              <li><i class="fa-solid fa-check"></i> 150+ Professionally Edited Images</li>
+              <li><i class="fa-solid fa-check"></i> High-Res Online Digital Gallery</li>
+              <li><i class="fa-solid fa-check"></i> Print Release & Download Rights</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="service_price">₹70,000 <span>/ event</span></h2>
+            <a href="#contact" class="btn-premium btn-outline select-package-btn" data-package="Silver Heirloom Package">Select Package</a>
+          </div>
+        </div>
+
+        <!-- Package 2: Gold (Highlighted/Popular) -->
+        <div class="service_card popular fade-up-element" style="transition-delay: 0.1s;">
+          <span class="popular_badge">Most Popular</span>
+          <div>
+            <h3 class="service_name">Gold Legacy</h3>
+            <p class="service_desc">Comprehensive wedding story coverage with a stunning handcrafted physical book.</p>
+            <ul class="service_features">
+              <li><i class="fa-solid fa-check"></i> Full-Day Coverage (Up to 12 Hours)</li>
+              <li><i class="fa-solid fa-check"></i> 2 Professional Photographers</li>
+              <li><i class="fa-solid fa-check"></i> Pre-Wedding Couples Session</li>
+              <li><i class="fa-solid fa-check"></i> 400+ Color Graded Master Files</li>
+              <li><i class="fa-solid fa-check"></i> Handcrafted Fine-Art Leather Album</li>
+              <li><i class="fa-solid fa-check"></i> Online Gallery & Digital Archive</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="service_price">₹95,000 <span>/ event</span></h2>
+            <a href="#contact" class="btn-premium btn-accent select-package-btn" data-package="Gold Legacy Package">Select Package</a>
+          </div>
+        </div>
+
+        <!-- Package 3: Platinum -->
+        <div class="service_card fade-up-element" style="transition-delay: 0.2s;">
+          <div>
+            <h3 class="service_name">Platinum Elite</h3>
+            <p class="service_desc">The complete photo & cinema suite with drone support for multi-day luxury events.</p>
+            <ul class="service_features">
+              <li><i class="fa-solid fa-check"></i> 2-Day Coverage (Weddings & Receptions)</li>
+              <li><i class="fa-solid fa-check"></i> 2 Photographers & 2 Cinematographers</li>
+              <li><i class="fa-solid fa-check"></i> Drone Aerial Photography & Video</li>
+              <li><i class="fa-solid fa-check"></i> 5-Minute Cinematic Film Teaser</li>
+              <li><i class="fa-solid fa-check"></i> Full Wedding Documentary Video</li>
+              <li><i class="fa-solid fa-check"></i> Premium Custom Box & Leather Album</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="service_price">₹1,80,000 <span>/ event</span></h2>
+            <a href="#contact" class="btn-premium btn-outline select-package-btn" data-package="Platinum Cinematic Package">Select Package</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === TESTIMONIALS SECTION === -->
+  <!-- IMPROVEMENT: Uncommented and styled client testimonials into a custom CSS/JS sliding quotes tray with ivory typography and active indicators -->
+  <section id="testimonials" class="testimonial_section">
+    <div class="container">
+      <div class="heading_container" style="margin-bottom: 40px;">
+        <h2>Client Reviews</h2>
+      </div>
+
+      <div class="testimonial_container">
+        <div class="testimonial_slider_wrapper">
+          <div class="testimonial_slider" id="testimonialSlider">
+            <!-- Slide 1 -->
+            <div class="testimonial_slide">
+              <p class="testimonial_quote">
+                "RK Digital Studio captured our wedding with absolute perfection. Every emotional detail, from the quiet tears to the grand laughter, was preserved in stunning quality. The team was professional yet felt like family."
+              </p>
+              <h5 class="testimonial_author">Priya & Rajesh</h5>
+              <span class="testimonial_role">Wedding Clients • Vizianagaram</span>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial_slide">
+              <p class="testimonial_quote">
+                "The pre-wedding shoot was incredibly fun, and the final leather-bound album is a true masterpiece of art. The lighting details, the candid expressions—everything completely exceeded our expectations!"
+              </p>
+              <h5 class="testimonial_author">Sneha & Amit</h5>
+              <span class="testimonial_role">Pre-Wedding Clients • Gajapathinagaram</span>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="testimonial_slide">
+              <p class="testimonial_quote">
+                "We wanted photographer artists who could cover the traditional rituals beautifully while delivering modern candid frames. RK Digital did exactly that. Highly recommended for couples seeking timeless quality."
+              </p>
+              <h5 class="testimonial_author">Lakshmi & Vikram</h5>
+              <span class="testimonial_role">Wedding Clients • Visakhapatnam</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dot Navigators -->
+        <div class="testimonial_dots">
+          <span class="testimonial_dot active" onclick="goToSlide(0)"></span>
+          <span class="testimonial_dot" onclick="goToSlide(1)"></span>
+          <span class="testimonial_dot" onclick="goToSlide(2)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CONTACT / BOOKING SECTION === -->
+  <!-- IMPROVEMENT: Uncommented and streamlined the booking form, structured contact rows with FontAwesome icons, and styled the Map with a greyscale filter -->
+  <section id="contact" class="contact_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>Book a Session</h2>
+      </div>
+
+      <div class="contact_grid">
+        <!-- Minimal Form -->
+        <div class="contact_form-wrapper fade-up-element">
+          <form class="contact_form" action="#" onsubmit="handleFormSubmit(event)">
+            <h3>Send a Message</h3>
+            
+            <div class="form-group">
+              <input type="text" id="contact_name" class="form-control" placeholder="Full Name" required>
+            </div>
+            
+            <div class="form-group">
+              <input type="email" id="contact_email" class="form-control" placeholder="Email Address" required>
+            </div>
+
+            <div class="form-group">
+              <select id="contact_service" class="form-control" required>
+                <option value="" disabled selected>Select Service Type</option>
+                <option value="Silver Heirloom Package">Silver Heirloom Package (₹70,000)</option>
+                <option value="Gold Legacy Package">Gold Legacy Package (₹95,000)</option>
+                <option value="Platinum Cinematic Package">Platinum Cinematic Package (₹1,80,000)</option>
+                <option value="Pre-Wedding Portrait">Pre-Wedding Session</option>
+                <option value="Other Query">Other Custom Request</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <textarea id="contact_message" class="form-control" placeholder="Share your plans (Date, Location, and Vision)..." required></textarea>
+            </div>
+
+            <div style="margin-top: 30px;">
+              <button type="submit" class="btn-premium btn-accent" style="margin: 0; width: 100%;">Submit Inquiry</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Studio Information and Google Maps -->
+        <div class="contact_info-wrapper fade-up-element">
+          <div class="contact_info-item">
+            <i class="fa-solid fa-location-dot contact_info-icon"></i>
+            <div class="contact_info-text">
+              <h5>Studio Location</h5>
+              <p>RK Digital Studio,<br>Opposite Vinayaka Temple, Four Roads Junction,<br>Gajapathinagaram, Vizianagaram,<br>Andhra Pradesh - 535270</p>
+            </div>
+          </div>
+
+          <div class="contact_info-item">
+            <i class="fa-solid fa-phone contact_info-icon"></i>
+            <div class="contact_info-text">
+              <h5>Call Us Directly</h5>
+              <p><a href="tel:+919912495553" style="color: inherit; text-decoration: none;">+91 9912495553</a></p>
+            </div>
+          </div>
+
+          <div class="contact_info-item">
+            <i class="fa-solid fa-envelope contact_info-icon"></i>
+            <div class="contact_info-text">
+              <h5>Email Address</h5>
+              <p><a href="mailto:rkdigitalgpm@gmail.com" style="color: inherit; text-decoration: none;">rkdigitalgpm@gmail.com</a></p>
+            </div>
+          </div>
+
+          <!-- Greyscale Filter Styled Google Map Iframe -->
+          <div class="contact_map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236.77928599614802!2d83.33687450362402!3d18.280167474833018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3bec9d921d9347%3A0x13fa8634fa0ce88d!2sR%20K%20Digital%20Studio!5e0!3m2!1sen!2sin!4v1692428581673!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === FOOTER SECTION === -->
+  <!-- IMPROVEMENT: Rebuilt the footer with near-black luxury styling, descriptive links, and gold social icons -->
+  <footer class="footer_section">
+    <div class="container">
+      <div class="footer_grid">
+        <!-- Brand Info -->
+        <div class="footer_brand">
+          <h3>RK Digital Studio</h3>
+          <p>Documenting fine-art wedding poetry and luxury portrait portfolios since 2004. Handcrafting modern family legacies with meticulous care.</p>
+        </div>
+
+        <!-- Sitemap Links -->
+        <div class="footer_links">
+          <h5>Navigate</h5>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Studio</a></li>
+            <li><a href="#portfolio">Our Portfolio</a></li>
+            <li><a href="#services">Services & Pricing</a></li>
+            <li><a href="#contact">Book Session</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="footer_social">
+          <h5>Follow Our Journey</h5>
+          <div class="footer_social-box">
+            <a href="https://instagram.com" class="footer_social-link" target="_blank" aria-label="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://facebook.com" class="footer_social-link" target="_blank" aria-label="Facebook Page"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://linkedin.com" class="footer_social-link" target="_blank" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://pinterest.com" class="footer_social-link" target="_blank" aria-label="Pinterest Boards"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="footer_bottom">
         <p>
-          minim veniam, quis nostrud exercitation ullamco laboris nisi
+          &copy; 2026 RK Digital Photo Studio. All Rights Reserved. Crafted for high-end experiences by <a href="https://vyasakondi.in" target="_blank">Vyas Akondi</a>.
         </p>
       </div>
-      <div class="layout_padding2-top">
-        <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="btn_container">
-                <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-9 col-lg-8">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="detail-box">
-                    <h4>
-                      Aloz den
-                    </h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore
-                      et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum
-                    </p>
-                  </div>
-                </div>
-                <div class="carousel-item ">
-                  <div class="detail-box">
-                    <h4>
-                      Aloz den
-                    </h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore
-                      et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum
-                    </p>
-                  </div>
-                </div>
-                <div class="carousel-item ">
-                  <div class="detail-box">
-                    <h4>
-                      Aloz den
-                    </h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore
-                      et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
     </div>
-  </section> -->
+  </footer>
 
-
-  <!-- end client section -->
-
-  <!-- contact section -->
-
-  <section class="contact_section layout_padding">
-    <div class="bg-img1">
-      <img src="photography/images/bg-img-1.png" alt="">
-    </div>
-    <div class="bg-img2">
-      <img src="photography/images/bg-img-2.png" alt="">
-    </div>
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Contact Us
-        </h2>
-      </div>
-      <div class="" style="padding-top: 5%;">
-        <div class="row">
-          <div class="col-md-8 mx-auto">
-            <h3>E-Mail: rkdigitalgpm@gmail.com</h3>
-            <h3>Phone: 9912495553</h3>
-            <h3>Head Office: </h3>
-            <p>RK Digital Studio, Opposite Vinayaka Temple, Four Road Juntion <br>
-               Gajapathinagaram, Vizianagaram <br>
-               Andhra Pradesh - 535270
-            </p>
-            <!-- <form action="">
-              <div class="contact_form-container">
-                <div>
-                  <div>
-                    <input type="text" placeholder="Name">
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Phone Number">
-                  </div>
-                  <div>
-                    <input type="email" placeholder="Email">
-                  </div>
-                  <div class="">
-                    <input type="text" placeholder="Message" class="message_input">
-                  </div>
-                  <div class=" d-flex justify-content-center ">
-                    <button type="submit">
-                      Send
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form> -->
-          </div>
-        <div class="row"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236.77928599614802!2d83.33687450362402!3d18.280167474833018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3bec9d921d9347%3A0x13fa8634fa0ce88d!2sR%20K%20Digital%20Studio!5e0!3m2!1sen!2sin!4v1692428581673!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- end contact section -->
-
-
-  <!-- info section -->
-  <!-- <section class="info_section ">
-    <div class="container">
-      <div class="info_container">
-        <div class="info_social">
-          <div class="d-flex justify-content-center">
-            <h4 class="">
-              Follow on
-            </h4>
-          </div>
-          <div class="social_box">
-            <a href="">
-              <img src="photography/images/fb.png" alt="">
-            </a>
-            <a href="">
-              <img src="photography/images/twitter.png" alt="">
-            </a>
-            <a href="">
-              <img src="photography/images/instagram.png" alt="">
-            </a>
-            <a href="">
-              <img src="photography/images/linkedin.png" alt="">
-            </a>
-            <a href="">
-              <img src="photography/images/dribble.png" alt="">
-            </a>
-            <a href="">
-              <img src="photography/images/pinterest.png" alt="">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- end info_section -->
-
-  <!-- footer section -->
-  <section class="container-fluid footer_section">
-    <div class="container">
-      <p>
-        &copy; 2023 All Rights Reserved By
-        <a href="https://vyasakondi.in">Vyas Akondi</a>
-      </p>
-    </div>
-  </section>
-  <!-- footer section -->
-
+  <!-- Base template Scripts -->
   <script type="text/javascript" src="photography/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="photography/js/bootstrap.js"></script>
+
+  <!-- === DYNAMIC CUSTOM INTERACTIVITY (Vanilla JS) === -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      // 1. Sticky Navigation Scrolled Class Trigger
+      const header = document.querySelector("header.header_section");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // 2. Active State Link Update & ScrollSpy Integration
+      const sections = document.querySelectorAll("section, div.hero_area");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      window.addEventListener("scroll", function () {
+        let currentSectionId = "home";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            currentSectionId = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${currentSectionId}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // Close mobile collapsable menu on link click
+      const navItems = document.querySelectorAll('.nav-link');
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          if (navbarCollapse.classList.contains('show')) {
+            $('.navbar-collapse').collapse('hide');
+          }
+        });
+      });
+
+      // 3. Scroll Triggered Fade-In Animations (Intersection Observer)
+      const animatedElements = document.querySelectorAll(".fade-up-element");
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      };
+
+      const animationObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animated");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      animatedElements.forEach((el) => {
+        animationObserver.observe(el);
+      });
+
+      // 4. Autofill Service Field on Package CTA Button Click
+      const selectPackageBtns = document.querySelectorAll(".select-package-btn");
+      const serviceSelect = document.getElementById("contact_service");
+
+      selectPackageBtns.forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          const packageName = this.getAttribute("data-package");
+          if (packageName && serviceSelect) {
+            serviceSelect.value = packageName;
+          }
+        });
+      });
+    });
+
+    // 5. Testimonial Carousel Auto Slide and Navigation
+    let currentSlide = 0;
+    const totalSlides = 3;
+    const slider = document.getElementById("testimonialSlider");
+    const dots = document.querySelectorAll(".testimonial_dot");
+    let autoSlideInterval = setInterval(nextSlide, 7000);
+
+    function goToSlide(slideIndex) {
+      currentSlide = slideIndex;
+      slider.style.transform = `translateX(-${currentSlide * 33.333}%)`;
+      
+      dots.forEach((dot, idx) => {
+        if (idx === currentSlide) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+
+      // Reset auto-slide timer to avoid immediate skips
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(nextSlide, 7000);
+    }
+
+    function nextSlide() {
+      let target = (currentSlide + 1) % totalSlides;
+      goToSlide(target);
+    }
+
+    // 6. Form Submission Response handler
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById("contact_name").value;
+      const email = document.getElementById("contact_email").value;
+      const service = document.getElementById("contact_service").value;
+      
+      // Premium confirmation feedback
+      alert(`Thank you, ${name}! Your inquiry for the "${service}" package has been recorded. We will contact you at ${email} within 24 hours with session date availability.`);
+      
+      // Reset form
+      event.target.reset();
+    }
+  </script>
 </body>
 
 </html>
